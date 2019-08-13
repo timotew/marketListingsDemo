@@ -1,0 +1,93 @@
+branches:
+  only:
+    - master
+
+before_install:
+  - npm install
+  - npm run ci
+git:
+  lfs_skip_smudge: true
+
+matrix:
+  include:
+    - language: node_js
+      node_js: 10
+      env: LANE='node'
+      script:
+        - npm install
+
+    - language: android
+      sudo: required
+      jdk: oraclejdk8
+      before_cache:
+        - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
+        - rm -rf $HOME/.gradle/caches/*/plugin-resolution/
+      cache:
+        directories:
+          - $HOME/.gradle/caches/
+      before_install:
+        - nvm install 8.3
+        - node --version
+        - yes | sdkmanager "platforms;android-27"
+        - mkdir "$ANDROID_HOME/licenses" || true
+        - echo yes | sdkmanager "extras;m2repository;com;android;support;constraint;constraint-layout;1.0.2"
+        - echo yes | sdkmanager "extras;m2repository;com;android;support;constraint;constraint-layout-solver;1.0.2"
+        - npm install
+      android:
+        components:
+          - build-tools-26.0.1
+          - android-26
+          - extra-android-m2repository
+          - extra-google-google_play_services
+          - extra-google-m2repository
+          - addon-google_apis-google-16
+          - tools
+          - platform-tools
+          - build-tools-27.0.0
+          - android-27
+          - build-tools-26.0.1
+          - android-26
+
+        licenses:
+          - "android-sdk-preview-license-.+"
+          - "android-sdk-license-.+"
+          - "google-gdk-license-.+"
+      script:
+        - cd android && ./gradlew assembleRelease
+      env: LANE='android'
+
+    - language: objective-c
+      os: osx
+      osx_image: xcode9.3
+      node_js: 8
+      cache:
+        - bundler
+        - pip
+      env: LANE='ios'
+      before_install:
+        - brew update
+        - brew reinstall nvm
+        - mkdir -p .nvm
+        - export NVM_DIR="$PWD/.nvm"
+        - source $(brew --prefix nvm)/nvm.sh
+        - brew outdated node || brew upgrade node
+        - npm install
+        - export IOS_SIMULATOR_UDID=`instruments -s devices | grep "iPhone 6 (9.3" | awk -F '[ ]' '{print $4}' | awk -F '[\[]' '{print $2}' | sed 's/.$//'`
+        - echo $IOS_SIMULATOR_UDID
+        - open -a "simulator" --args -CurrentDeviceUDID $IOS_SIMULATOR_UDID
+      before_script:
+        - nvm install 8
+        - sudo easy_install virtualenv
+        - virtualenv ~/virtualenv
+        - source ~/virtualenv/bin/activate
+      script:
+        - set -o pipefail && xcodebuild -project ios/mocare.xcodeproj -scheme mocare -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO -destination 'platform=iOS Simulator,name=iPhone 6,OS=9.3' -quiet
+deploy:
+  skip_cleanup: true
+  provider: releases
+  api_key:
+    secure: LRlASNWXEa822UK+Irx2mfYKGASr87EA+eqazlyfm+CG1lCN+kqbAgAC/Iv4OSR+gynlswjIbMCmxMA6cfdQoKR2NxgNUW9CC5ffmU5ZmhBM3eODo79xzgfLKcfqaBX30GczNOqlbDudhQ9adgIH3kfuHaX+eEmlTQ118/4RgCMBcr8rhkBITholvxUctvcvFAZwtsadvQf+GYzUIrjGXdTaxbp4nJA0T86nN5ZQKtddvw+3xpTwy5wZvWRS9gb2Za7oFu/sRejWstITBT7NPec8ga8POgioijlS23d7UvkaDl8ExNLOWb5tCUgH1VTW0DypFKv0i/HU5pqy78MJgkY6kEQogoSZpKsvwzGPJyzyZJFkAEepTCMMFEsUD7TdEFW4Hq0Xz64ghH9yFp8onLn6VEOyCCK7MU6HEy3NSEEUgqQbgP2S++lsIy2K+xknjsOizQu/DRtgeimynaxWTHVQdG9TpodGBqDwUmQQKxqo7VFP7ZdDObDY1eDadi3uQmXNURttpokr4Q5PaWsjsdoY8uQUzb5L8n3e4P0u+ssTobeCWNS8n0Qi+YCo2YKXKtp9VE3jH8DpneNLUoOlojJl5ffeBoWyS+O6nqAoMnsuCnHcKqt/fNKHLyHFO3Skz+j7puV2VS1pD5ir/peUirlsXa6T0jPt4yUuI/7uzBk=
+  file: "$TRAVIS_BUILD_DIR/android/app/build/outputs/apk/app-release.apk"
+  on:
+    repo: timotew/mocare_mobile
+    tags: true
