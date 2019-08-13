@@ -4,7 +4,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
- #import <GoogleMaps/GoogleMaps.h>
+
  #import "AppDelegate.h"
  #import "RNNotifications.h"
  #import <Firebase.h>
@@ -18,7 +18,6 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
      [FIRApp configure];
-     [GMSServices provideAPIKey:@"AIzaSyBLiQ43eMjkl7XCDxTPnbgy1sJYnviba24"];
      NSURL *jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index.ios" fallbackResource:nil];
      [ReactNativeNavigation bootstrap:jsCodeLocation launchOptions:launchOptions];
 

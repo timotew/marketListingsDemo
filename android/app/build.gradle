@@ -175,6 +175,7 @@ configurations.all {
 }
 
 dependencies {
+    compile project(':react-native-firebase')
 
     implementation "com.google.firebase:firebase-core:16.0.6"
     implementation "com.google.android.gms:play-services-base:16.0.1"
@@ -185,18 +186,13 @@ dependencies {
     implementation(project(':react-native-facebook-account-kit')){
            exclude group: 'com.facebook.android', module: 'account-kit-sdk'
     }
-    implementation ('com.facebook.android:account-kit-sdk:4.+') {
-           exclude group: 'com.google.android.gms', module: 'play-services-auth-api-phone'
-           exclude group: 'com.google.android.gms', module: 'play-services-auth'
-    }
+
     implementation 'com.google.android.gms:play-services-auth-api-phone:+'
     implementation 'com.google.android.gms:play-services-auth:+'
     implementation project(':react-native-interactable')
     implementation project(':react-native-blur')
     implementation project(':react-native-ui-lib')
-    implementation project(':reactnativenotifications')
     implementation project(':react-native-maps')
-    implementation project(':react-native-tts')
     implementation project(':react-native-fast-image')
     implementation project(':react-native-config')
     implementation project(':react-native-linear-gradient')

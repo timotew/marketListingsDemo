@@ -3,7 +3,6 @@ import { View, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Navigation } from 'react-native-navigation';
-import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 // import firebase from 'react-native-firebase';
 import * as appActions from '../reducers/app/actions';
 // this is a traditional React component connected to the redux store
@@ -49,20 +48,7 @@ class Talents extends Component {
   }
 
   render() {
-    return (
-      <View style={styles.container}>
-        <MapView
-          provider={PROVIDER_GOOGLE} // remove if not using Google Maps
-          style={styles.map}
-          region={{
-            latitude: 37.78825,
-            longitude: -122.4324,
-            latitudeDelta: 0.015,
-            longitudeDelta: 0.0121,
-          }}
-        />
-      </View>
-    );
+    return <View style={styles.container} />;
   }
 }
 

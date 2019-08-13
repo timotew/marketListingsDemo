@@ -1,7 +1,6 @@
 package app.mocare;
 
 import com.airbnb.android.react.maps.MapsPackage;
-import net.no_mad.tts.TextToSpeechPackage;
 import com.dylanvann.fastimage.FastImageViewPackage;
 import com.lugg.ReactNativeConfig.ReactNativeConfigPackage;
 import com.BV.LinearGradient.LinearGradientPackage;
@@ -50,7 +49,7 @@ public class MainApplication extends NavigationApplication {
         // No need to add RnnPackage and MainReactPackage
         return Arrays.<ReactPackage>asList(new LinearGradientPackage(), new RNFetchBlobPackage(),
                 new VectorIconsPackage(), new ReactNativeConfigPackage(), new FastImageViewPackage(),
-                new TextToSpeechPackage(), new MapsPackage(), new RNNotificationsPackage(MainApplication.this),
+                 new MapsPackage(), new RNNotificationsPackage(MainApplication.this),
                 new RNFirebasePackage(), new RNFirebaseAnalyticsPackage(), new RNAccountKitPackage(),
                 new HighlighterViewPackage(), new TextInputDelKeyHandlerPackage(), new WheelPickerPackage(),
                 new BlurViewPackage(), new Interactable());
