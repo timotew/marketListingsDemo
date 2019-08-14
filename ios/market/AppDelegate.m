@@ -7,7 +7,6 @@
 
  #import "AppDelegate.h"
  #import "RNNotifications.h"
- #import <Firebase.h>
 
  #import <React/RCTBundleURLProvider.h>
  #import <React/RCTRootView.h>
@@ -17,7 +16,6 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-     [FIRApp configure];
      NSURL *jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index.ios" fallbackResource:nil];
      [ReactNativeNavigation bootstrap:jsCodeLocation launchOptions:launchOptions];
 
