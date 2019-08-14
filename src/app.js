@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import { Navigation } from 'react-native-navigation';
 import thunk from 'redux-thunk';
 import { Platform } from 'react-native';
-import firebase from 'react-native-firebase';
+
 import * as reducers from './reducers';
 import * as appActions from './reducers/app/actions';
 import * as socketActions from './reducers/socket/actions';
@@ -30,7 +30,6 @@ export default class App {
     // Initiate Event listeners
     Navigation.events().registerAppLaunchedListener(() => {
       // tracker.trackEvent('lunch', 'appLunched');
-      firebase.analytics().logEvent('appLunched', { user: 'timothy' });
       store.subscribe(this.onStoreUpdate.bind(this));
       store.dispatch(appActions.appInitialized());
     });

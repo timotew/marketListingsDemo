@@ -1,6 +1,6 @@
 package app.mocare;
 
-import com.airbnb.android.react.maps.MapsPackage;
+
 import com.dylanvann.fastimage.FastImageViewPackage;
 import com.lugg.ReactNativeConfig.ReactNativeConfigPackage;
 import com.BV.LinearGradient.LinearGradientPackage;
@@ -12,9 +12,6 @@ import com.wix.reactnativeuilib.wheelpicker.WheelPickerPackage;
 import com.wix.interactable.Interactable;
 import com.RNFetchBlob.RNFetchBlobPackage;
 import com.cmcewen.blurview.BlurViewPackage;
-import io.invertase.firebase.RNFirebasePackage;
-import io.invertase.firebase.analytics.RNFirebaseAnalyticsPackage;
-import io.underscope.react.fbak.RNAccountKitPackage;
 
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
@@ -49,8 +46,7 @@ public class MainApplication extends NavigationApplication {
         // No need to add RnnPackage and MainReactPackage
         return Arrays.<ReactPackage>asList(new LinearGradientPackage(), new RNFetchBlobPackage(),
                 new VectorIconsPackage(), new ReactNativeConfigPackage(), new FastImageViewPackage(),
-                 new MapsPackage(), new RNNotificationsPackage(MainApplication.this),
-                new RNFirebasePackage(), new RNFirebaseAnalyticsPackage(), new RNAccountKitPackage(),
+                new RNNotificationsPackage(MainApplication.this),
                 new HighlighterViewPackage(), new TextInputDelKeyHandlerPackage(), new WheelPickerPackage(),
                 new BlurViewPackage(), new Interactable());
     }
