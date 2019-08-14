@@ -11,24 +11,24 @@ import Contests from './Contests';
 // register all screens of the app (including internal ones)
 export default function registerScreens(store, Provider) {
   Navigation.registerComponentWithRedux(
-    'tlikes.WelcomeScreen',
+    'market.WelcomeScreen',
     () => WelcomeScreen,
     Provider,
     store
   );
 
-  Navigation.registerComponentWithRedux('tlikes.ContestsScreen', () => Contests, Provider, store);
+  Navigation.registerComponentWithRedux('market.ContestsScreen', () => Contests, Provider, store);
 
-  Navigation.registerComponentWithRedux('tlikes.TalentsScreen', () => Talents, Provider, store);
+  Navigation.registerComponentWithRedux('market.TalentsScreen', () => Talents, Provider, store);
 
-  Navigation.registerComponentWithRedux('tlikes.TrendingScreen', () => Trending, Provider, store);
+  Navigation.registerComponentWithRedux('market.TrendingScreen', () => Trending, Provider, store);
 
-  Navigation.registerComponentWithRedux('tlikes.SignUpScreen', () => SignUpScreen, Provider, store);
+  Navigation.registerComponentWithRedux('market.SignUpScreen', () => SignUpScreen, Provider, store);
 
-  Navigation.registerComponentWithRedux('tlikes.LoginScreen', () => LoginScreen, Provider, store);
+  Navigation.registerComponentWithRedux('market.LoginScreen', () => LoginScreen, Provider, store);
 
   Navigation.registerComponentWithRedux(
-    'tlikes.BottomTabsSideMenu',
+    'market.BottomTabsSideMenu',
     () => BottomTabsSideMenu,
     Provider,
     store

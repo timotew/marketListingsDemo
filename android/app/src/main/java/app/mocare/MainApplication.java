@@ -5,13 +5,13 @@ import com.dylanvann.fastimage.FastImageViewPackage;
 import com.lugg.ReactNativeConfig.ReactNativeConfigPackage;
 import com.BV.LinearGradient.LinearGradientPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
-import com.wix.reactnativenotifications.RNNotificationsPackage;
 import com.wix.reactnativeuilib.highlighterview.HighlighterViewPackage;
 import com.wix.reactnativeuilib.textinput.TextInputDelKeyHandlerPackage;
 import com.wix.reactnativeuilib.wheelpicker.WheelPickerPackage;
 import com.wix.interactable.Interactable;
-import com.RNFetchBlob.RNFetchBlobPackage;
 import com.cmcewen.blurview.BlurViewPackage;
+import com.horcrux.svg.SvgPackage;
+import com.RNFetchBlob.RNFetchBlobPackage;
 
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
@@ -46,9 +46,8 @@ public class MainApplication extends NavigationApplication {
         // No need to add RnnPackage and MainReactPackage
         return Arrays.<ReactPackage>asList(new LinearGradientPackage(), new RNFetchBlobPackage(),
                 new VectorIconsPackage(), new ReactNativeConfigPackage(), new FastImageViewPackage(),
-                new RNNotificationsPackage(MainApplication.this),
                 new HighlighterViewPackage(), new TextInputDelKeyHandlerPackage(), new WheelPickerPackage(),
-                new BlurViewPackage(), new Interactable());
+                new BlurViewPackage(), new Interactable(), new SvgPackage());
     }
 
     @Override

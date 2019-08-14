@@ -1,5 +1,4 @@
 import app from './app/reducer';
-import mike from './mike/reducer';
-import socket from './socket/reducer';
+import listings from './listings/reducer';
 
-export { app, mike, socket };
+export { app, listings };

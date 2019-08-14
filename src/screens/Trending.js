@@ -1,13 +1,28 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-// import { Platform, StyleSheet } from 'react-native';
+import { ScrollView, Dimensions, Text } from 'react-native';
 import { connect } from 'react-redux';
 import { Navigation } from 'react-native-navigation';
-import { GiftedChat } from 'react-native-gifted-chat';
+import { LineChart, BarChart } from 'react-native-chart-kit';
 import * as appActions from '../reducers/app/actions';
-import * as mikeActions from '../reducers/mike/actions';
-
+import { data } from './data';
 // this is a traditional React component connected to the redux store
+
+const chartConfig = {
+  // backgroundColor: '#022173',
+  backgroundGradientFrom: '#022173',
+  backgroundGradientTo: '#1b3fa0',
+  color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+  style: {
+    borderRadius: 16,
+  },
+};
+// {
+//     backgroundColor: '#0091EA',
+//     backgroundGradientFrom: '#0091EA',
+//     backgroundGradientTo: '#0091EA',
+//     color: (opacity = 1) => `rgba(${255}, ${255}, ${255}, ${opacity})`
+//   }
 
 class Trending extends Component {
   constructor(props) {
@@ -30,16 +45,38 @@ class Trending extends Component {
   }
 
   render() {
-    // TODO: get messages from reducer
-    const { messages, sendMessages } = this.props;
+    const { latestListings } = this.props;
+    console.log(latestListings)
+    const { width } = Dimensions.get('window');
+    const height = 220;
+
+    const labelStyle = {
+      color: chartConfig.color(),
+      marginVertical: 10,
+      textAlign: 'center',
+      fontSize: 16,
+    };
+    const graphStyle = {
+      marginVertical: 8,
+      ...chartConfig.style,
+    };
     return (
-      <GiftedChat
-        messages={messages}
-        onSend={sendMessages}
-        user={{
-          _id: 1,
+      <ScrollView
+        key={Math.random()}
+        style={{
+          backgroundColor: chartConfig.backgroundColor,
         }}
-      />
+      >
+        <Text style={labelStyle}>Latest Listings</Text>
+        <LineChart
+          data={data}
+          width={width}
+          height={height}
+          chartConfig={chartConfig}
+          bezier
+          style={graphStyle}
+        />
+      </ScrollView>
     );
   }
 }
@@ -48,22 +85,21 @@ class Trending extends Component {
 function mapStateToProps(state) {
   return {
     menuOpened: state.app.menuOpened,
-    messages: state.mike.messages,
+    latestListings: state.listings.latest,
   };
 }
 
 const mapDispatchToProps = dispatch => {
   return {
     toggleMenu: () => dispatch(appActions.toggleMenu()),
-    sendMessages: messages => dispatch(mikeActions.sendMessages(messages)),
   };
 };
 Trending.propTypes = {
   menuOpened: PropTypes.bool.isRequired,
   toggleMenu: PropTypes.func.isRequired,
   // eslint-disable-next-line react/forbid-prop-types
-  messages: PropTypes.object.isRequired,
-  sendMessages: PropTypes.func.isRequired,
+  latestListings: PropTypes.array.isRequired,
+  // sendMessages: PropTypes.func.isRequired,
   componentId: PropTypes.string.isRequired,
 };
 // const styles = StyleSheet.create({

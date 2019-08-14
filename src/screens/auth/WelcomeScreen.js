@@ -22,7 +22,7 @@ class WelcomeScreen extends PureComponent {
     const { componentId } = this.props;
     Navigation.push(componentId, {
       component: {
-        name: 'tlikes.LoginScreen',
+        name: 'market.LoginScreen',
         passProps: {
           text: 'Pushed screen',
         },
@@ -41,7 +41,7 @@ class WelcomeScreen extends PureComponent {
     const { componentId } = this.props;
     Navigation.push(componentId, {
       component: {
-        name: 'tlikes.SignUpScreen',
+        name: 'market.SignUpScreen',
         passProps: {
           text: 'Pushed signup screen',
         },

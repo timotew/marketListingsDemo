@@ -7,7 +7,7 @@ import { Platform } from 'react-native';
 
 import * as reducers from './reducers';
 import * as appActions from './reducers/app/actions';
-import * as socketActions from './reducers/socket/actions';
+import * as listingActions from './reducers/listings/actions';
 import registerScreens from './screens';
 // import Config from 'react-native-config';
 
@@ -25,7 +25,7 @@ export default class App {
     // since react-redux only works on components, we need to subscribe this class manually
 
     // new socket message
-    store.dispatch(socketActions.connectSocket());
+    store.dispatch(listingActions.requestLatestListings());
 
     // Initiate Event listeners
     Navigation.events().registerAppLaunchedListener(() => {
@@ -102,7 +102,7 @@ export default class App {
                 children: [
                   {
                     component: {
-                      name: 'tlikes.WelcomeScreen',
+                      name: 'market.WelcomeScreen',
                       passProps: {
                         str: "This is a prop passed in 'startSingleScreenApp()'!",
                         obj: {
@@ -150,7 +150,7 @@ export default class App {
                 children: [
                   {
                     component: {
-                      name: 'tlikes.WelcomeScreen',
+                      name: 'market.WelcomeScreen',
                       passProps: {
                         str: "This is a prop passed in 'startSingleScreenApp()'!",
                         obj: {
@@ -182,7 +182,7 @@ export default class App {
             sideMenu: {
               left: {
                 component: {
-                  name: 'tlikes.BottomTabsSideMenu',
+                  name: 'market.BottomTabsSideMenu',
                 },
               },
               center: {
@@ -217,7 +217,7 @@ export default class App {
                         children: [
                           {
                             component: {
-                              name: 'tlikes.TrendingScreen',
+                              name: 'market.TrendingScreen',
                               options: {
                                 statusBar: {
                                   visible: true,
@@ -270,7 +270,7 @@ export default class App {
                         children: [
                           {
                             component: {
-                              name: 'tlikes.TalentsScreen',
+                              name: 'market.TalentsScreen',
                               options: {
                                 statusBar: {
                                   visible: true,
@@ -321,7 +321,7 @@ export default class App {
                         children: [
                           {
                             component: {
-                              name: 'tlikes.ContestsScreen',
+                              name: 'market.ContestsScreen',
                               options: {
                                 statusBar: {
                                   visible: true,
