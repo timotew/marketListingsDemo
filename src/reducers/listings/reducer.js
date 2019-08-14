@@ -2,7 +2,7 @@ import Immutable from 'seamless-immutable';
 import * as types from './actionTypes';
 
 const initialState = Immutable({
-  latest: [],
+  latest: {},
   fetchingListings: false,
   listingLoaded: false,
 });
@@ -16,7 +16,7 @@ export default function app(state = initialState, action = {}) {
     case types.FETCH_ALL_LISTINGS_SUCCESS:
       return state.merge({
         fetchingListings: false,
-        listings: action.listings,
+        latest: action.latest,
         listingsLoaded: true,
       });
     case types.FETCH_ALL_LISTINGS_FAILED:

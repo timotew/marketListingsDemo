@@ -46,7 +46,7 @@ class Trending extends Component {
 
   render() {
     const { latestListings } = this.props;
-    console.log(latestListings)
+    console.log(latestListings);
     const { width } = Dimensions.get('window');
     const height = 220;
 
@@ -98,7 +98,7 @@ Trending.propTypes = {
   menuOpened: PropTypes.bool.isRequired,
   toggleMenu: PropTypes.func.isRequired,
   // eslint-disable-next-line react/forbid-prop-types
-  latestListings: PropTypes.array.isRequired,
+  latestListings: PropTypes.object.isRequired,
   // sendMessages: PropTypes.func.isRequired,
   componentId: PropTypes.string.isRequired,
 };

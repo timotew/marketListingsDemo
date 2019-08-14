@@ -10,12 +10,11 @@ export function receiveMessage(ev, content) {
 }
 
 export function requestLatestListings() {
-  console.log("req latest");
   return async function(dispatch) {
     try {
       const latest = await LatestRepo.getLatestListings();
-      dispatch({ action: types.FETCH_ALL_LISTINGS_SUCCESS, latest})
-    } catch(e) {
+      dispatch({ type: types.FETCH_ALL_LISTINGS_SUCCESS, latest });
+    } catch (e) {
       dispatch({ type: types.FETCH_ALL_LISTINGS_FAILED });
       console.log(e);
     }
