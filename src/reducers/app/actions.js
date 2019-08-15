@@ -9,7 +9,7 @@ export function appInitialized() {
   return async function(dispatch) {
     // since all business logic should be inside redux actions
     // this is a good place to put your app initialization code
-    dispatch(changeAppRoot('AUTH'));
+    dispatch(changeAppRoot('DASHBOARD'));
   };
 }
 
