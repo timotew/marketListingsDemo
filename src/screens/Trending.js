@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 import { Alert, Dimensions, StyleSheet, FlatList } from 'react-native';
 import { connect } from 'react-redux';
 import { Navigation } from 'react-native-navigation';
-import { LineChart } from 'react-native-chart-kit';
 import * as Animatable from 'react-native-animatable';
-import {AnimatableManager, ThemeManager,BorderRadiuses, ListItem, Colors, View, Card, Button, Text, Image, LoaderScreen} from 'react-native-ui-lib'; //eslint-disable-line
+import {AnimatableManager, ThemeManager,BorderRadiuses, ListItem, Colors, Card, Button, Image, LoaderScreen, View, Text} from 'react-native-ui-lib'; //eslint-disable-line
 import * as appActions from '../reducers/app/actions';
-import { data } from './data';
+import {  stockData } from './data';
 import * as listingActions from '../reducers/listings/actions';
+import { StockLine } from 'react-native-pathjs-charts';
 // this is a traditional React component connected to the redux store
 
 const chartConfig = {
@@ -36,12 +36,91 @@ const graphStyle = {
   ...chartConfig.style,
 };
 
+
+const options = {
+  width: 250,
+  height: 250,
+  color: '#2980B9',
+  margin: {
+    top: 10,
+    left: 35,
+    bottom: 30,
+    right: 10
+  },
+  animate: {
+    type: 'delayed',
+    duration: 200
+  },
+  axisX: {
+    showAxis: true,
+    showLines: true,
+    showLabels: true,
+    showTicks: true,
+    zeroAxis: false,
+    orient: 'bottom',
+    tickValues: [],
+    label: {
+      fontFamily: 'Arial',
+      fontSize: 8,
+      fontWeight: true,
+      fill: '#34495E'
+    }
+  },
+  axisY: {
+    showAxis: true,
+    showLines: true,
+    showLabels: true,
+    showTicks: true,
+    zeroAxis: false,
+    orient: 'left',
+    tickValues: [],
+    label: {
+      fontFamily: 'Arial',
+      fontSize: 8,
+      fontWeight: true,
+      fill: '#34495E'
+    }
+  },
+  interaction: true,
+  cursorLine: {
+    stroke: 'white',
+    strokeWidth: 2
+  }
+};
+
 class Trending extends Component {
   constructor(props) {
     super(props);
     Navigation.events().bindComponent(this); // <== Will be automatically unregistered when unmounted
     this.props.loadListings();
     console.log('loo');
+    this.state = {};
+  }
+
+  componentWillMount() {
+    this._panHandlerStart = this._panHandlerStart.bind(this);
+    this._panHandlerMove = this._panHandlerStart.bind(this);
+    this._panHandlerEnd = this._panHandlerEnd.bind(this);
+  }
+
+  static navigationOptions = ({ navigation }) => ({
+    title: `StockLine - Gesture`,
+  });
+
+  _panHandlerStart(cursorPositionX) {
+    this.setState({
+      selectedDataPointPosition: String(Math.floor(cursorPositionX * (stockData[0].length - 1)))
+    });
+  }
+  _panHandlerMove(cursorPositionX) {
+    this.setState({
+      selectedDataPointPosition: String(Math.floor(cursorPositionX * (stockData[0].length - 1)))
+    });
+  }
+  _panHandlerEnd(cursorPositionX) {
+    this.setState({
+      selectedDataPointPosition: ""
+    });
   }
 
   navigationButtonPressed({ buttonId }) {
@@ -59,9 +138,7 @@ class Trending extends Component {
   }
 
   renderItem = ({ item }) => {
-
     const statusColor = item.cmc_rank > 5 ? Colors.green30 : Colors.red30;
-
 
     return (
       <Animatable.View {...animationProps}>
@@ -103,14 +180,17 @@ class Trending extends Component {
 
   renderHeader = () => {
     return (
-      <LineChart
-        data={data}
-        width={width}
-        height={height}
-        chartConfig={chartConfig}
-        bezier
-        style={graphStyle}
-      />
+        <View style={styles.scontainer}>
+          <Text> Data point index: { this.state.selectedDataPointPosition }</Text>
+          <StockLine
+              panHandlerStart={this._panHandlerStart}
+              panHandlerMove={this._panHandlerMove}
+              panHandlerEnd={this._panHandlerEnd}
+              data={stockData}
+              options={options}
+              xKey='x'
+              yKey='y' />
+        </View>
     );
   };
 
@@ -120,14 +200,20 @@ class Trending extends Component {
 
   noData = () => {
     return (
-        <View style={styles.noContentView}>
-          {/* <Icon size={100} name="gear" color="white" /> */}
-        </View>
+      <View style={styles.noContentView}>
+        {/* <Icon size={100} name="gear" color="white" /> */}
+      </View>
     );
   };
 
   render() {
-    const { latestListings, loading,  loadMoreListings, loadListings, loadingMoreListings } = this.props;
+    const {
+      latestListings,
+      loading,
+      loadMoreListings,
+      loadListings,
+      loadingMoreListings,
+    } = this.props;
 
     if (loading) {
       return (
@@ -168,7 +254,7 @@ const mapDispatchToProps = dispatch => {
   return {
     toggleMenu: () => dispatch(appActions.toggleMenu()),
     loadListings: () => dispatch(listingActions.requestLatestListings()),
-    loadMoreListings: () => dispatch(listingActions.fetchMoreListings())
+    loadMoreListings: () => dispatch(listingActions.fetchMoreListings()),
   };
 };
 Trending.propTypes = {
@@ -267,6 +353,12 @@ const styles = StyleSheet.create({
   border: {
     borderBottomWidth: StyleSheet.hairlineWidth,
     borderColor: ThemeManager.dividerColor,
+  },
+  scontainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#f7f7f7',
   },
 });
 export default connect(

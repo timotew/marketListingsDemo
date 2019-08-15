@@ -11,13 +11,13 @@ export function receiveMessage(ev, content) {
 
 export function fetchMoreListings() {
   return async function(dispatch, getState) {
-    const { limit, skip, loadingMore, latest} = getState().listings;
+    const { limit, skip, loadingMore, latest } = getState().listings;
     if (latest.length >= 99 || loadingMore) {
       return;
     }
     try {
       dispatch({ type: types.FETCH_MORE_LISTINGS });
-      const more = await LatestRepo.getLatestListings(skip + limit, limit)
+      const more = await LatestRepo.getLatestListings(skip + limit, limit);
       console.log(skip, limit, more);
       dispatch({ type: types.FETCH_MORE_LISTINGS_SUCCESS, skip: skip + limit, more });
     } catch (e) {
