@@ -3,6 +3,7 @@ import { View, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Navigation } from 'react-native-navigation';
+import { Avatar } from 'react-native-elements';
 // import firebase from 'react-native-firebase';
 import * as appActions from '../reducers/app/actions';
 // this is a traditional React component connected to the redux store

@@ -3,11 +3,11 @@ import { createStore, applyMiddleware, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
 import { Navigation } from 'react-native-navigation';
 import thunk from 'redux-thunk';
-import { Platform } from 'react-native';
 
 import * as reducers from './reducers';
 import * as appActions from './reducers/app/actions';
 import * as listingActions from './reducers/listings/actions';
+import getDefaultNavigationStyle from './theme';
 import registerScreens from './screens';
 // import Config from 'react-native-config';
 
@@ -33,22 +33,6 @@ export default class App {
       store.subscribe(this.onStoreUpdate.bind(this));
       store.dispatch(appActions.appInitialized());
     });
-    // Navigation.events().registerComponentDidAppearListener(
-    //   ({ componentName }) => tracker.trackEvent('pageEntry', componentName)
-    // );
-    // Navigation.events().registerComponentDidDisappearListener(
-    //   ({ componentName }) => tracker.trackEvent('pageExit', componentName)
-    // );
-    // Navigation.events().registerNavigationButtonPressedListener(
-    //   ({ buttonId }) => tracker.trackEvent('navigationButtonPressed', buttonId)
-    // );
-    // Navigation.events().registerBottomTabSelectedListener(
-    //   ({ selectedTabIndex, unselectedTabIndex }) =>
-    //     tracker.trackEvent(
-    //       'navigationBetweenTabs',
-    //       `${selectedTabIndex}->${unselectedTabIndex}`
-    //     )
-    // );
   }
 
   onStoreUpdate() {
@@ -60,123 +44,11 @@ export default class App {
       App.startApp(root);
     }
   }
-  // single with sidemenue
-  // root: {
-  //   sideMenu: {
-  //     left: {
-  //       component: {
-  //         name: 'example.BottomTabsSideMenu',
-  //       },
-  //     },
 
-  //     center: {
-  //       stack: {
-  // }
-  // }
 
   static startApp(root) {
     switch (root) {
-      case 'AUTH':
-        // tracker.trackEvent('accessLevel', 'guest');
-        if (Platform.OS === 'ios') {
-          Navigation.setRoot({
-            root: {
-              stack: {
-                id: 'Auth',
-                options: {
-                  topBar: {
-                    visible: false,
-                    hideOnScroll: true,
-                    buttonColor: 'black',
-                  },
-                  popGesture: true,
-                  statusBar: {
-                    visible: true,
-                    style: 'light',
-                  },
-                  layout: {
-                    backgroundColor: 'white',
-                    orientation: ['portrait' /* , 'landscape' */],
-                  },
-                },
-                children: [
-                  {
-                    component: {
-                      name: 'market.WelcomeScreen',
-                      passProps: {
-                        str: "This is a prop passed in 'startSingleScreenApp()'!",
-                        obj: {
-                          str: 'This is a prop passed in an object!',
-                          arr: [
-                            {
-                              str: 'This is a prop in an object in an array in an object!',
-                            },
-                          ],
-                          arr2: [['array of strings', 'with two strings'], [1, 2, 3]],
-                        },
-                        num: 1234,
-                        fn() {
-                          return 'Hello from a function!';
-                        },
-                      },
-                    },
-                  },
-                ],
-              },
-            },
-          });
-        } else {
-          Navigation.setDefaultOptions({
-            topBar: {
-              visible: false,
-              drawBehind: true,
-              background: {
-                color: 'white',
-              },
-              title: {
-                color: '#1CABE2',
-              },
-            },
-            statusBar: {
-              backgroundColor: '#1CABE2',
-              drawBehind: false,
-              visible: true,
-            },
-          });
-          Navigation.setRoot({
-            root: {
-              stack: {
-                id: 'Auth',
-                children: [
-                  {
-                    component: {
-                      name: 'market.WelcomeScreen',
-                      passProps: {
-                        str: "This is a prop passed in 'startSingleScreenApp()'!",
-                        obj: {
-                          str: 'This is a prop passed in an object!',
-                          arr: [
-                            {
-                              str: 'This is a prop in an object in an array in an object!',
-                            },
-                          ],
-                          arr2: [['array of strings', 'with two strings'], [1, 2, 3]],
-                        },
-                        num: 1234,
-                        fn() {
-                          return 'Hello from a function!';
-                        },
-                      },
-                    },
-                  },
-                ],
-              },
-            },
-          });
-        }
-        return;
       case 'DASHBOARD':
-        // tracker.trackEvent('accessLevel', 'user');
         Navigation.setRoot({
           root: {
             sideMenu: {
@@ -221,7 +93,7 @@ export default class App {
                               options: {
                                 statusBar: {
                                   visible: true,
-                                  style: 'light',
+                                  style: 'dark',
                                 },
                                 popGesture: true,
                                 topBar: {
@@ -229,12 +101,12 @@ export default class App {
                                   buttonColor: 'white',
                                   hideOnScroll: true,
                                   title: {
-                                    text: 'Chat with the Doctor',
+                                    text: 'Latest listings',
                                     fontSize: 20,
-                                    color: 'white',
+                                    color: '#524E53',
                                   },
                                   background: {
-                                    color: '#1CABE2',
+                                    color: '#E1EBF8',
                                   },
 
                                   rightButtons: [
@@ -248,7 +120,7 @@ export default class App {
                                     {
                                       icon: require('./img/men.png'),
                                       id: 'menu',
-                                      color: 'white',
+                                      color: '#524E53',
                                     },
                                   ],
                                 },
@@ -287,7 +159,7 @@ export default class App {
                                     color: 'white',
                                   },
                                   background: {
-                                    color: '#1CABE2',
+                                    color: '#E1EBF8',
                                   },
                                   rightButtons: [
                                     {
@@ -338,7 +210,7 @@ export default class App {
                                     color: 'white',
                                   },
                                   background: {
-                                    color: '#1CABE2',
+                                    color: '#E1EBF8',
                                   },
                                   rightButtons: [
                                     {

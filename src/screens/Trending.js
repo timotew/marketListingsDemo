@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Alert, Dimensions, StyleSheet, FlatList } from 'react-native';
 import { connect } from 'react-redux';
+import { StockLine } from 'react-native-pathjs-charts';
 import { Navigation } from 'react-native-navigation';
 import * as Animatable from 'react-native-animatable';
 import {AnimatableManager, ThemeManager,BorderRadiuses, ListItem, Colors, Card, Button, Image, LoaderScreen, View, Text} from 'react-native-ui-lib'; //eslint-disable-line
+
 import * as appActions from '../reducers/app/actions';
-import {  stockData } from './data';
+import { stockData } from './data';
 import * as listingActions from '../reducers/listings/actions';
-import { StockLine } from 'react-native-pathjs-charts';
 // this is a traditional React component connected to the redux store
 
 const chartConfig = {
@@ -36,7 +37,6 @@ const graphStyle = {
   ...chartConfig.style,
 };
 
-
 const options = {
   width: 250,
   height: 250,
@@ -45,11 +45,11 @@ const options = {
     top: 10,
     left: 35,
     bottom: 30,
-    right: 10
+    right: 10,
   },
   animate: {
     type: 'delayed',
-    duration: 200
+    duration: 200,
   },
   axisX: {
     showAxis: true,
@@ -63,8 +63,8 @@ const options = {
       fontFamily: 'Arial',
       fontSize: 8,
       fontWeight: true,
-      fill: '#34495E'
-    }
+      fill: '#34495E',
+    },
   },
   axisY: {
     showAxis: true,
@@ -78,14 +78,14 @@ const options = {
       fontFamily: 'Arial',
       fontSize: 8,
       fontWeight: true,
-      fill: '#34495E'
-    }
+      fill: '#34495E',
+    },
   },
   interaction: true,
   cursorLine: {
     stroke: 'white',
-    strokeWidth: 2
-  }
+    strokeWidth: 2,
+  },
 };
 
 class Trending extends Component {
@@ -109,17 +109,19 @@ class Trending extends Component {
 
   _panHandlerStart(cursorPositionX) {
     this.setState({
-      selectedDataPointPosition: String(Math.floor(cursorPositionX * (stockData[0].length - 1)))
+      selectedDataPointPosition: String(Math.floor(cursorPositionX * (stockData[0].length - 1))),
     });
   }
+
   _panHandlerMove(cursorPositionX) {
     this.setState({
-      selectedDataPointPosition: String(Math.floor(cursorPositionX * (stockData[0].length - 1)))
+      selectedDataPointPosition: String(Math.floor(cursorPositionX * (stockData[0].length - 1))),
     });
   }
+
   _panHandlerEnd(cursorPositionX) {
     this.setState({
-      selectedDataPointPosition: ""
+      selectedDataPointPosition: '',
     });
   }
 
@@ -148,13 +150,6 @@ class Trending extends Component {
           height={77.5}
           onPress={() => Alert.alert(`pressed on order #${item.id + 1}`)}
         >
-          <ListItem.Part left>
-            {/* <Animatable.Image */}
-            {/*    source={{uri: row.mediaUrl}} */}
-            {/*    style={styles.image} */}
-            {/*    {...imageAnimationProps} */}
-            {/* /> */}
-          </ListItem.Part>
           <ListItem.Part middle column containerStyle={[styles.border, { paddingRight: 17 }]}>
             <ListItem.Part containerStyle={{ marginBottom: 3 }}>
               <Text dark10 text70 style={{ flex: 1, marginRight: 10 }} numberOfLines={1}>
@@ -180,17 +175,23 @@ class Trending extends Component {
 
   renderHeader = () => {
     return (
-        <View style={styles.scontainer}>
-          <Text> Data point index: { this.state.selectedDataPointPosition }</Text>
-          <StockLine
-              panHandlerStart={this._panHandlerStart}
-              panHandlerMove={this._panHandlerMove}
-              panHandlerEnd={this._panHandlerEnd}
-              data={stockData}
-              options={options}
-              xKey='x'
-              yKey='y' />
-        </View>
+      <View style={styles.scontainer}>
+
+        <Card row  style={{marginBottom: 5, marginTop: 5}} onPress={() => {}} enableBlur>
+
+          <View padding-20 flex>
+            <StockLine
+                panHandlerStart={this._panHandlerStart}
+                panHandlerMove={this._panHandlerMove}
+                panHandlerEnd={this._panHandlerEnd}
+                data={stockData}
+                options={options}
+                xKey="x"
+                yKey="y"
+            />
+          </View>
+        </Card>
+      </View>
     );
   };
 
