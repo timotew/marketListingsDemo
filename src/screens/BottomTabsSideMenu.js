@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
 const SideMenu = () => {
   return (
     <View style={styles.sideMenu}>
-      <Text style={styles.title}>Side Menu</Text>
+      <Text style={styles.title}>Hi there!</Text>
     </View>
   );
 };

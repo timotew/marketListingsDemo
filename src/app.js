@@ -100,12 +100,12 @@ export default class App {
                                   buttonColor: 'white',
                                   hideOnScroll: true,
                                   title: {
-                                    text: 'Latest listings',
+                                    text: 'Market Latest',
                                     fontSize: 20,
-                                    color: '#524E53',
+                                    color: '#FAFAFA',
                                   },
                                   background: {
-                                    color: '#E1EBF8',
+                                    color: '#1C2053',
                                   },
 
                                   rightButtons: [
@@ -119,7 +119,7 @@ export default class App {
                                     {
                                       icon: require('./img/men.png'),
                                       id: 'menu',
-                                      color: '#524E53',
+                                      color: 'white',
                                     },
                                   ],
                                 },
@@ -141,7 +141,7 @@ export default class App {
                         children: [
                           {
                             component: {
-                              name: 'market.TalentsScreen',
+                              name: 'market.HistoryScreen',
                               options: {
                                 statusBar: {
                                   visible: true,
@@ -153,12 +153,12 @@ export default class App {
                                   buttonColor: 'white',
                                   hideOnScroll: true,
                                   title: {
-                                    text: 'Disco',
+                                    text: 'Favorite History',
                                     fontSize: 20,
                                     color: 'white',
                                   },
                                   background: {
-                                    color: '#E1EBF8',
+                                    color: '#1C2053',
                                   },
                                   rightButtons: [
                                     {
@@ -192,7 +192,7 @@ export default class App {
                         children: [
                           {
                             component: {
-                              name: 'market.ContestsScreen',
+                              name: 'market.FavoriteScreen',
                               options: {
                                 statusBar: {
                                   visible: true,
@@ -209,7 +209,7 @@ export default class App {
                                     color: 'white',
                                   },
                                   background: {
-                                    color: '#E1EBF8',
+                                    color: '#1C2053',
                                   },
                                   rightButtons: [
                                     {

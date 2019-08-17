@@ -4,6 +4,8 @@ import { StyleSheet, FlatList } from 'react-native';
 import { connect } from 'react-redux';
 import { Navigation } from 'react-native-navigation';
 import * as Animatable from 'react-native-animatable';
+import { AreaChart, Grid } from 'react-native-svg-charts';
+import * as shape from 'd3-shape';
 import {
   AnimatableManager,
   ThemeManager,
@@ -30,11 +32,25 @@ const icos = require(`../img/icons/ico`);
 const defaultIcon = require(`../img/icons/coin.png`);
 const upIcon = <VectorIco name="angle-up" size={20} color={Colors.green30} />;
 const downIcon = <VectorIco name="angle-down" size={20} color={Colors.red30} />;
-const favStar = (
-  <VectorIco middle name="star" size={20} color={Colors.green30} style={{ marginRight: 8 }} />
+const FavStar = action => (
+  <VectorIco
+    middle
+    name="star"
+    size={20}
+    color={Colors.green30}
+    onPress={action}
+    style={{ marginRight: 8 }}
+  />
 );
-const star = (
-  <VectorIco middle name="star-o" size={20} color={Colors.green30} style={{ marginRight: 8 }} />
+const Star = action => (
+  <VectorIco
+    middle
+    name="star-o"
+    size={20}
+    onPress={action}
+    color={Colors.green30}
+    style={{ marginRight: 8 }}
+  />
 );
 
 const styles = StyleSheet.create({
@@ -68,7 +84,6 @@ class Latest extends Component {
   dismissToast = () => this.setState({ toastVisible: false });
 
   showAddToFav = cur => () => {
-    this.setState({ toastVisible: true, activeTab: cur.symbol });
     const { addToFav, removeFromFav } = this.props;
     addToFav(cur)();
     const action = [{ label: 'Undo', backgroundColor: Colors.red40, onPress: removeFromFav(cur) }];
@@ -87,6 +102,11 @@ class Latest extends Component {
     );
   };
 
+  toggleMore = cur => () => {
+    const { activeTab } = this.state;
+    this.setState({ activeTab: cur.symbol === activeTab ? '' : cur.symbol });
+  };
+
   renderItem = ({ item }) => {
     const { removeFromFav, favorites } = this.props;
     const { activeTab } = this.state;
@@ -94,7 +114,7 @@ class Latest extends Component {
     const statusColor = item.quote.USD.percent_change_24h > 0 ? Colors.green30 : Colors.red30;
     const Progress = item.quote.USD.percent_change_24h > 0 ? upIcon : downIcon;
     const infav = typeof favorites.find(e => e === item.symbol) !== 'undefined';
-    const Favicon = infav ? favStar : star;
+    const Favicon = infav ? FavStar(removeFromFav(item)) : Star(this.showAddToFav(item));
     let icon = icos[item.symbol.toLowerCase()];
     if (typeof icon === 'undefined') {
       icon = defaultIcon;
@@ -105,7 +125,7 @@ class Latest extends Component {
           activeBackgroundColor={Colors.dark60}
           activeOpacity={0.3}
           height={77.5}
-          onPress={infav ? removeFromFav(item) : this.showAddToFav(item)}
+          onPress={this.toggleMore(item)}
         >
           <ListItem.Part left>
             <Animatable.Image source={icon} style={styles.image} {...imageAnimationProps} />
@@ -143,17 +163,28 @@ class Latest extends Component {
   };
 
   moreInfo = cur => {
+    // FIXME: free API KEY don't have access to historical data
     const loadingHistory = false;
+    const data = [50, 10, 40, 95, -4, -24, 85, 91, 35, 53, -53, 24, 50, -20, -80];
     return (
       <Animatable.View
         duration={300}
         transition="backgroundColor"
-        style={{ backgroundColor: 'rgba(245,252,255,1)' }}
+        style={{ backgroundColor: 'rgba(245,252,255,1)', margin: 5 }}
       >
         {loadingHistory && <LoaderScreen color={Colors.blue30} message="Loading..." overlay />}
         <Animatable.Text duration={300} easing="ease-out" animation="zoomIn">
           {cur.name}
         </Animatable.Text>
+        <AreaChart
+          style={{ height: 200 }}
+          data={data}
+          contentInset={{ top: 30, bottom: 30 }}
+          curve={shape.curveNatural}
+          svg={{ fill: '#8800cc' }}
+        >
+          <Grid />
+        </AreaChart>
       </Animatable.View>
     );
   };
@@ -174,7 +205,7 @@ class Latest extends Component {
     return (
       <TextField
         text70
-        containerStyle={{ marginBottom: 2 }}
+        containerStyle={{ backgroundColor: Colors.white }}
         floatingPlaceholder
         placeholder="Search..."
         onChangeText={this.search}
@@ -218,7 +249,7 @@ class Latest extends Component {
       loadingMoreListings,
       favorites,
     } = this.props;
-    const { filtered } = this.state;
+    const { filtered, activeTab } = this.state;
     if (loading) {
       return (
         <Animatable.View animatio="fadeOut">
@@ -236,7 +267,7 @@ class Latest extends Component {
         ListHeaderComponent={this.renderHeader}
         keyExtractor={this.keyExtractor}
         renderItem={this.renderItem}
-        extraData={favorites}
+        extraData={{ favorites, activeTab }}
         enableEmptySections
         onEndReached={loadMoreListings}
         onEndReachedThreshold={0.8}

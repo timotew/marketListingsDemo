@@ -7,7 +7,7 @@ import { Navigation } from 'react-native-navigation';
 import * as appActions from '../reducers/app/actions';
 
 // this is a traditional React component connected to the redux store
-class Contests extends Component {
+class Favorite extends Component {
   constructor(props) {
     super(props);
     Navigation.events().bindComponent(this); // <== Will be automatically unregistered when unmounted
@@ -37,7 +37,7 @@ class Contests extends Component {
 }
 
 // const styles = StyleSheet.create({});
-Contests.propTypes = {
+Favorite.propTypes = {
   menuOpened: PropTypes.bool.isRequired,
   toggleMenu: PropTypes.func.isRequired,
   componentId: PropTypes.string.isRequired,
@@ -58,4 +58,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Contests);
+)(Favorite);

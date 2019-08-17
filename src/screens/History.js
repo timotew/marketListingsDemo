@@ -1,28 +1,13 @@
 import React, { Component } from 'react';
-import { View, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Navigation } from 'react-native-navigation';
-import { Avatar } from 'react-native-elements';
-// import firebase from 'react-native-firebase';
+import { Text, LoaderScreen, Colors, View} from 'react-native-ui-lib';
+import { View as AnimatableView } from 'react-native-animatable';
 import * as appActions from '../reducers/app/actions';
 // this is a traditional React component connected to the redux store
-const styles = StyleSheet.create({
-  root: {
-    backgroundColor: 'white',
-  },
-  container: {
-    ...StyleSheet.absoluteFillObject,
-    height: 400,
-    width: 400,
-    justifyContent: 'flex-end',
-    alignItems: 'center',
-  },
-  map: {
-    ...StyleSheet.absoluteFillObject,
-  },
-});
-class Talents extends Component {
+
+class History extends Component {
   // state = {
   //   posts: [],
   //   selected: new Map(),
@@ -49,7 +34,14 @@ class Talents extends Component {
   }
 
   render() {
-    return <View style={styles.container} />;
+    return (
+      <View flex bg-white center>
+        <Text text10>History data, only available for premium API.</Text>
+        <AnimatableView>
+          <LoaderScreen color={Colors.blue30} message="Loading..." overlay />
+        </AnimatableView>
+      </View>
+    );
   }
 }
 
@@ -66,12 +58,13 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-Talents.propTypes = {
+History.propTypes = {
   menuOpened: PropTypes.bool.isRequired,
   toggleMenu: PropTypes.func.isRequired,
   componentId: PropTypes.string.isRequired,
 };
+
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Talents);
+)(History);

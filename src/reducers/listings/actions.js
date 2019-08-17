@@ -41,9 +41,9 @@ export function requestLatestListings() {
 }
 
 export function addToFav(cur) {
-  return { type: types.ADD_TO_FAVORITES, currency: cur};
+  return { type: types.ADD_TO_FAVORITES, currency: cur };
 }
 
 export function removeFromFav(cur) {
-  return { type: types.REMOVE_FROM_FAVORITES, currency: cur};
+  return { type: types.REMOVE_FROM_FAVORITES, currency: cur };
 }
