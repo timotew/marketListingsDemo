@@ -3,6 +3,7 @@ import * as types from './actionTypes';
 
 const initialState = Immutable({
   latest: {},
+  favorites: ['BTC', 'ETH', 'LTC', 'HT'],
   fetchingListings: false,
   listingsLoaded: false,
   loadingMore: false,
@@ -12,6 +13,15 @@ const initialState = Immutable({
 
 export default function app(state = initialState, action = {}) {
   switch (action.type) {
+    case types.ADD_TO_FAVORITES:
+      return state.merge({
+        favorites: [...state.favorites, action.currency.symbol],
+      });
+
+    case types.REMOVE_FROM_FAVORITES:
+      return state.merge({
+        favorites: state.favorites.filter(c => c !== action.currency.symbol),
+      });
     case types.FETCH_MORE_LISTINGS:
       return state.merge({
         loadingMore: true,

@@ -1,7 +1,7 @@
 import { Navigation } from 'react-native-navigation';
 
 import BottomTabsSideMenu from './BottomTabsSideMenu';
-import Trending from './Trending';
+import Latest from './Latest';
 import Talents from './Talents';
 import Contests from './Contests';
 
@@ -11,7 +11,7 @@ export default function registerScreens(store, Provider) {
 
   Navigation.registerComponentWithRedux('market.TalentsScreen', () => Talents, Provider, store);
 
-  Navigation.registerComponentWithRedux('market.TrendingScreen', () => Trending, Provider, store);
+  Navigation.registerComponentWithRedux('market.LatestScreen', () => Latest, Provider, store);
 
   Navigation.registerComponentWithRedux(
     'market.BottomTabsSideMenu',

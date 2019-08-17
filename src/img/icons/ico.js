@@ -427,5 +427,3 @@ module.exports = {
   zilla: require('./zilla.png'),
   zrx: require('./zrx.png'),
 };
-
-

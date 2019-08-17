@@ -88,7 +88,7 @@ export default class App {
                         children: [
                           {
                             component: {
-                              name: 'market.TrendingScreen',
+                              name: 'market.LatestScreen',
                               options: {
                                 statusBar: {
                                   visible: true,
@@ -126,7 +126,7 @@ export default class App {
                                 bottomTab: {
                                   fontSize: 12,
                                   badge: 'New',
-                                  text: 'Trending',
+                                  text: 'Market',
                                   icon: require('./img/trending.png'),
                                   selectedIcon: require('./img/trending_selected.png'),
                                 },
@@ -177,7 +177,7 @@ export default class App {
                                 },
                                 bottomTab: {
                                   fontSize: 12,
-                                  text: 'Discover',
+                                  text: 'History',
                                   icon: require('./img/discover.png'),
                                   selectedIcon: require('./img/discover_selected.png'),
                                 },
@@ -228,7 +228,7 @@ export default class App {
                                 },
                                 bottomTab: {
                                   fontSize: 12,
-                                  text: 'Contests',
+                                  text: 'Favorites',
                                   icon: require('./img/contest.png'),
                                   selectedIcon: require('./img/contest_selected.png'),
                                 },
