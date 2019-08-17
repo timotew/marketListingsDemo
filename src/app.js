@@ -45,7 +45,6 @@ export default class App {
     }
   }
 
-
   static startApp(root) {
     switch (root) {
       case 'DASHBOARD':

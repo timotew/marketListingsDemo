@@ -3,8 +3,8 @@ import {AnimatableManager, ThemeManager, Constants, Assets, Colors, Typography} 
 
 /** Examples - uncomment when needed */
 Typography.loadTypographies({
-  h1: {fontSize: 58, fontWeight: '300', lineHeight: 80},
-  h2: {fontSize: 46, fontWeight: '300', lineHeight: 64},
+  h1: { fontSize: 58, fontWeight: '300', lineHeight: 80 },
+  h2: { fontSize: 46, fontWeight: '300', lineHeight: 64 },
 });
 
 // Colors.loadColors({
@@ -54,12 +54,12 @@ ThemeManager.setTheme({
 
 const customAnimationsDefinitions = {
   customAnimation1: {
-    from: {opacity: 0, translateY: 20},
-    to: {opacity: 1, translateY: 0},
+    from: { opacity: 0, translateY: 20 },
+    to: { opacity: 1, translateY: 0 },
   },
   customAnimation2: {
-    from: {opacity: 0, translateY: 40},
-    to: {opacity: 1, translateY: 0},
+    from: { opacity: 0, translateY: 40 },
+    to: { opacity: 1, translateY: 0 },
   },
 };
 // IMPORTANT! Make uilib's animations available globally for the app's use (option to pass adittional animation definitions)

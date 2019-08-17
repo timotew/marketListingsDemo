@@ -88,6 +88,9 @@ const options = {
   },
 };
 
+const icos = require(`../img/icons/ico`);
+const defaultIcon = require(`../img/icons/coin.png`);
+
 class Trending extends Component {
   constructor(props) {
     super(props);
@@ -141,7 +144,10 @@ class Trending extends Component {
 
   renderItem = ({ item }) => {
     const statusColor = item.cmc_rank > 5 ? Colors.green30 : Colors.red30;
-
+    let icon = icos[item.symbol.toLowerCase()];
+    if (typeof icon === 'undefined') {
+      icon = defaultIcon
+    }
     return (
       <Animatable.View {...animationProps}>
         <ListItem
@@ -150,6 +156,13 @@ class Trending extends Component {
           height={77.5}
           onPress={() => Alert.alert(`pressed on order #${item.id + 1}`)}
         >
+          <ListItem.Part left>
+            <Animatable.Image
+              source={icon}
+              style={styles.image}
+              {...imageAnimationProps}
+            />
+          </ListItem.Part>
           <ListItem.Part middle column containerStyle={[styles.border, { paddingRight: 17 }]}>
             <ListItem.Part containerStyle={{ marginBottom: 3 }}>
               <Text dark10 text70 style={{ flex: 1, marginRight: 10 }} numberOfLines={1}>
@@ -176,18 +189,16 @@ class Trending extends Component {
   renderHeader = () => {
     return (
       <View style={styles.scontainer}>
-
-        <Card row  style={{marginBottom: 5, marginTop: 5}} onPress={() => {}} enableBlur>
-
+        <Card row style={{ marginBottom: 5, marginTop: 5 }} onPress={() => {}} enableBlur>
           <View padding-20 flex>
             <StockLine
-                panHandlerStart={this._panHandlerStart}
-                panHandlerMove={this._panHandlerMove}
-                panHandlerEnd={this._panHandlerEnd}
-                data={stockData}
-                options={options}
-                xKey="x"
-                yKey="y"
+              panHandlerStart={this._panHandlerStart}
+              panHandlerMove={this._panHandlerMove}
+              panHandlerEnd={this._panHandlerEnd}
+              data={stockData}
+              options={options}
+              xKey="x"
+              yKey="y"
             />
           </View>
         </Card>
@@ -266,6 +277,7 @@ Trending.propTypes = {
   loading: PropTypes.bool.isRequired,
   componentId: PropTypes.string.isRequired,
 };
+
 // const styles = StyleSheet.create({
 //   container: {
 //     backgroundColor: '#3c0e65',
