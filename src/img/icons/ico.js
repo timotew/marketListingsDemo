@@ -1,3 +1,4 @@
+/* eslint-disable global-require */
 module.exports = {
   $pac: require('./$pac.png'),
   '0xbtc': require('./0xbtc.png'),
@@ -190,7 +191,6 @@ module.exports = {
   huc: require('./huc.png'),
   hush: require('./hush.png'),
   icn: require('./icn.png'),
-  'ico.js': require('./ico.js'),
   icx: require('./icx.png'),
   ignis: require('./ignis.png'),
   ilk: require('./ilk.png'),

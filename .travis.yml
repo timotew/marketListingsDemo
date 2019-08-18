@@ -89,5 +89,5 @@ deploy:
     secure: LRlASNWXEa822UK+Irx2mfYKGASr87EA+eqazlyfm+CG1lCN+kqbAgAC/Iv4OSR+gynlswjIbMCmxMA6cfdQoKR2NxgNUW9CC5ffmU5ZmhBM3eODo79xzgfLKcfqaBX30GczNOqlbDudhQ9adgIH3kfuHaX+eEmlTQ118/4RgCMBcr8rhkBITholvxUctvcvFAZwtsadvQf+GYzUIrjGXdTaxbp4nJA0T86nN5ZQKtddvw+3xpTwy5wZvWRS9gb2Za7oFu/sRejWstITBT7NPec8ga8POgioijlS23d7UvkaDl8ExNLOWb5tCUgH1VTW0DypFKv0i/HU5pqy78MJgkY6kEQogoSZpKsvwzGPJyzyZJFkAEepTCMMFEsUD7TdEFW4Hq0Xz64ghH9yFp8onLn6VEOyCCK7MU6HEy3NSEEUgqQbgP2S++lsIy2K+xknjsOizQu/DRtgeimynaxWTHVQdG9TpodGBqDwUmQQKxqo7VFP7ZdDObDY1eDadi3uQmXNURttpokr4Q5PaWsjsdoY8uQUzb5L8n3e4P0u+ssTobeCWNS8n0Qi+YCo2YKXKtp9VE3jH8DpneNLUoOlojJl5ffeBoWyS+O6nqAoMnsuCnHcKqt/fNKHLyHFO3Skz+j7puV2VS1pD5ir/peUirlsXa6T0jPt4yUuI/7uzBk=
   file: "$TRAVIS_BUILD_DIR/android/app/build/outputs/apk/app-release.apk"
   on:
-    repo: timotew/mocare_mobile
+    repo: timotew/marketListingsDemo
     tags: true
