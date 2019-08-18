@@ -120,7 +120,7 @@ MarketItem.propTypes = {
   toggleMore: PropTypes.func,
   addToFav: PropTypes.func,
   removeFromFav: PropTypes.func,
-  favorites: PropTypes.arrayOf(PropTypes.object),
+  favorites: PropTypes.arrayOf(PropTypes.string),
   activeTab: PropTypes.string,
 };
 

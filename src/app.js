@@ -59,7 +59,7 @@ export default class App {
                   options: {
                     bottomTabs: {
                       titleDisplayMode: 'alwaysShow',
-                      barStyle: 'black',
+                      barStyle: 'default',
                       translucent: true,
                       hideShadow: false,
                     },
@@ -89,7 +89,7 @@ export default class App {
                               options: {
                                 statusBar: {
                                   visible: true,
-                                  style: 'dark',
+                                  style: 'light',
                                 },
                                 popGesture: true,
                                 topBar: {
@@ -177,57 +177,6 @@ export default class App {
                                   text: 'History',
                                   icon: require('./img/discover.png'),
                                   selectedIcon: require('./img/discover_selected.png'),
-                                },
-                              },
-                            },
-                          },
-                        ],
-                      },
-                    },
-                    {
-                      stack: {
-                        children: [
-                          {
-                            component: {
-                              name: 'market.FavoriteScreen',
-                              options: {
-                                statusBar: {
-                                  visible: true,
-                                  style: 'light',
-                                },
-                                popGesture: true,
-                                topBar: {
-                                  visible: true,
-                                  buttonColor: 'white',
-                                  hideOnScroll: true,
-                                  title: {
-                                    text: 'Compete With the Best of Bests',
-                                    fontSize: 20,
-                                    color: 'white',
-                                  },
-                                  background: {
-                                    color: '#1C2053',
-                                  },
-                                  rightButtons: [
-                                    {
-                                      icon: require('./img/tlogo.png'),
-                                      id: 'tlogo',
-                                      color: 'white',
-                                    },
-                                  ],
-                                  leftButtons: [
-                                    {
-                                      icon: require('./img/men.png'),
-                                      id: 'menu',
-                                      color: 'white',
-                                    },
-                                  ],
-                                },
-                                bottomTab: {
-                                  fontSize: 12,
-                                  text: 'Favorites',
-                                  icon: require('./img/contest.png'),
-                                  selectedIcon: require('./img/contest_selected.png'),
                                 },
                               },
                             },

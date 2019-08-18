@@ -5,6 +5,7 @@ import { AreaChart, Grid } from 'react-native-svg-charts';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import * as shape from 'd3-shape';
 import { Colors, LoaderScreen } from 'react-native-ui-lib';
+import numeral from 'numeral';
 
 const HistoryChart = ({ currency }) => {
   // FIXME: free API KEY don't have access to historical data
@@ -29,6 +30,11 @@ const HistoryChart = ({ currency }) => {
       >
         <Grid />
       </AreaChart>
+      <Animatable.Text duration={300} easing="ease-out" animation="zoomIn">
+        {`Market Cap:${numeral(currency.quote.USD.market_cap).format('$0.00a')}  Supply:${numeral(
+          currency.total_supply
+        ).format('$0.00a')}  Volume:${numeral(currency.quote.USD.volume_24h).format('$0.00a')}  `}
+      </Animatable.Text>
     </Animatable.View>
   );
 };
