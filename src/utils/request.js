@@ -17,6 +17,7 @@ const Request = async (path, method, payload) => {
     typeof payload === 'object' &&
     !Array.isArray(payload)
   ) {
+    // eslint-disable-next-line no-restricted-syntax
     for (const [key, value] of Object.entries(payload)) {
       body.push({
         name: key,
@@ -57,7 +58,3 @@ const Request = async (path, method, payload) => {
 };
 
 export default Request;
-
-export function updateToken(token) {
-  requestToken = token;
-}
