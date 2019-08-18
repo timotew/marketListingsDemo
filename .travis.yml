@@ -81,7 +81,7 @@ matrix:
         - virtualenv ~/virtualenv
         - source ~/virtualenv/bin/activate
       script:
-        - set -o pipefail && xcodebuild -project ios/mocare.xcodeproj -scheme mocare -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO -destination 'platform=iOS Simulator,name=iPhone 6,OS=9.3' -quiet
+        - set -o pipefail && xcodebuild -project ios/market.xcodeproj -scheme market -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO -destination 'platform=iOS Simulator,name=iPhone 6,OS=9.3' -quiet
 deploy:
   skip_cleanup: true
   provider: releases
