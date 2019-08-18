@@ -44,7 +44,6 @@
 		417029B1947D44148F666915 /* libRNFetchBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D8CEFF33A3C490ABF1F5CAB /* libRNFetchBlob.a */; };
 		42DAE8CDD09D489187AD2979 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 044DA7CD9B94477FBB926373 /* FontAwesome.ttf */; };
 		449D8B3567DA4EFF9346AB17 /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1DCB8401F8DA4567BEFBF384 /* MaterialCommunityIcons.ttf */; };
-		468B755B79EA47CD83580BB6 /* libFastImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 925D01538D80437581F637B2 /* libFastImage.a */; };
 		555A317ABD6745B38B0AEF62 /* Feather.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5E07C6B7861A4126BBCCCE6A /* Feather.ttf */; };
 		58889936350F42B1BEF8B9F1 /* libReactNativeConfig.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8999B3DC44974F83A25B550F /* libReactNativeConfig.a */; };
 		5B74D0DCE29E4AA6BB7DDC42 /* libInteractable.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C47D5BDBE6B6461B83306F05 /* libInteractable.a */; };
@@ -583,7 +582,6 @@
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
 				58889936350F42B1BEF8B9F1 /* libReactNativeConfig.a in Frameworks */,
-				468B755B79EA47CD83580BB6 /* libFastImage.a in Frameworks */,
 				0742745739CD48A9B5B018DB /* libreactnativeuilib.a in Frameworks */,
 				400C54270FBD4A69848874EC /* libRNBlur.a in Frameworks */,
 				5B74D0DCE29E4AA6BB7DDC42 /* libInteractable.a in Frameworks */,
@@ -1772,20 +1770,11 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/GoogleMaps",
-					"$(PROJECT_DIR)/Firebase/**",
-					"$(SRCROOT)/../node_modules/react-native-facebook-account-kit/ios",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/rn-fetch-blob/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-config/ios/ReactNativeConfig",
-					"$(SRCROOT)/../node_modules/react-native-fast-image/ios/FastImage/**",
-					"$(SRCROOT)/../node_modules/react-native-tts/ios/TextToSpeech",
-					"$(SRCROOT)/../node_modules/react-native-maps/lib/ios/**",
-					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
-					"$(SRCROOT)/Firebase/**",
-					"$(SRCROOT)/../node_modules/react-native-facebook-account-kit/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-ui-lib/lib/ios/reactnativeuilib/**",
 					"$(SRCROOT)/../node_modules/react-native-blur/ios",
 					"$(SRCROOT)/../node_modules/react-native-interactable/lib/ios/Interactable",
@@ -1817,20 +1806,11 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/GoogleMaps",
-					"$(PROJECT_DIR)/Firebase/**",
-					"$(SRCROOT)/../node_modules/react-native-facebook-account-kit/ios",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/rn-fetch-blob/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-config/ios/ReactNativeConfig",
-					"$(SRCROOT)/../node_modules/react-native-fast-image/ios/FastImage/**",
-					"$(SRCROOT)/../node_modules/react-native-tts/ios/TextToSpeech",
-					"$(SRCROOT)/../node_modules/react-native-maps/lib/ios/**",
-					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
-					"$(SRCROOT)/Firebase/**",
-					"$(SRCROOT)/../node_modules/react-native-facebook-account-kit/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-ui-lib/lib/ios/reactnativeuilib/**",
 					"$(SRCROOT)/../node_modules/react-native-blur/ios",
 					"$(SRCROOT)/../node_modules/react-native-interactable/lib/ios/Interactable",
