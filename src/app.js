@@ -7,9 +7,7 @@ import thunk from 'redux-thunk';
 import * as reducers from './reducers';
 import * as appActions from './reducers/app/actions';
 import * as listingActions from './reducers/listings/actions';
-import getDefaultNavigationStyle from './theme';
 import registerScreens from './screens';
-// import Config from 'react-native-config';
 
 // redux related book keeping
 const createStoreWithMiddleware = applyMiddleware(thunk.withExtraArgument({}))(createStore);
@@ -29,7 +27,6 @@ export default class App {
 
     // Initiate Event listeners
     Navigation.events().registerAppLaunchedListener(() => {
-      // tracker.trackEvent('lunch', 'appLunched');
       store.subscribe(this.onStoreUpdate.bind(this));
       store.dispatch(appActions.appInitialized());
     });

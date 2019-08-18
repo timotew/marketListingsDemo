@@ -1,7 +1,6 @@
-package app.mocare;
+package app.market;
 
 
-import com.dylanvann.fastimage.FastImageViewPackage;
 import com.lugg.ReactNativeConfig.ReactNativeConfigPackage;
 import com.BV.LinearGradient.LinearGradientPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
@@ -45,7 +44,7 @@ public class MainApplication extends NavigationApplication {
         // Add additional packages you require here
         // No need to add RnnPackage and MainReactPackage
         return Arrays.<ReactPackage>asList(new LinearGradientPackage(), new RNFetchBlobPackage(),
-                new VectorIconsPackage(), new ReactNativeConfigPackage(), new FastImageViewPackage(),
+                new VectorIconsPackage(), new ReactNativeConfigPackage(),
                 new HighlighterViewPackage(), new TextInputDelKeyHandlerPackage(), new WheelPickerPackage(),
                 new BlurViewPackage(), new Interactable(), new SvgPackage());
     }

@@ -123,7 +123,7 @@ android {
         }
     }
     defaultConfig {
-        applicationId "app.mocare"
+        applicationId "app.market"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         missingDimensionStrategy "RNN.reactNativeVersion", "reactNative57_5"
@@ -181,7 +181,6 @@ dependencies {
     implementation project(':react-native-interactable')
     implementation project(':react-native-blur')
     implementation project(':react-native-ui-lib')
-    implementation project(':react-native-fast-image')
     implementation project(':react-native-config')
     implementation project(':react-native-interactable')
     implementation project(':react-native-linear-gradient')
@@ -200,5 +199,4 @@ task copyDownloadableDepsToLibs(type: Copy) {
     into 'libs'
 }
 
-apply plugin: 'com.google.gms.google-services'
 com.google.gms.googleservices.GoogleServicesPlugin.config.disableVersionCheck = true

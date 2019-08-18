@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Navigation } from 'react-native-navigation';
-import { Text, LoaderScreen, Colors, View} from 'react-native-ui-lib';
+import { Text, LoaderScreen, Colors, View } from 'react-native-ui-lib';
 import { View as AnimatableView } from 'react-native-animatable';
 import * as appActions from '../reducers/app/actions';
 // this is a traditional React component connected to the redux store

@@ -1,4 +1,4 @@
-package app.mocare;
+package app.market;
 
 import com.reactnativenavigation.NavigationActivity;
 

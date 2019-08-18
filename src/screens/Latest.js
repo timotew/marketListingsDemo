@@ -4,54 +4,20 @@ import { StyleSheet, FlatList } from 'react-native';
 import { connect } from 'react-redux';
 import { Navigation } from 'react-native-navigation';
 import * as Animatable from 'react-native-animatable';
-import { AreaChart, Grid } from 'react-native-svg-charts';
-import * as shape from 'd3-shape';
 import {
-  AnimatableManager,
   ThemeManager,
   BorderRadiuses,
-  ListItem,
   Colors,
   TextField,
   LoaderScreen,
   View,
-  Text,
   Toast,
 } from 'react-native-ui-lib';
-import VectorIco from 'react-native-vector-icons/dist/FontAwesome';
-import numeral from 'numeral';
 
 import * as appActions from '../reducers/app/actions';
 import * as listingActions from '../reducers/listings/actions';
+import MarketItem from '../components/MarketItem';
 // this is a traditional React component connected to the redux store
-
-const animationProps = AnimatableManager.presets.fadeInRight;
-const imageAnimationProps = AnimatableManager.getRandomDelay();
-
-const icos = require(`../img/icons/ico`);
-const defaultIcon = require(`../img/icons/coin.png`);
-const upIcon = <VectorIco name="angle-up" size={20} color={Colors.green30} />;
-const downIcon = <VectorIco name="angle-down" size={20} color={Colors.red30} />;
-const FavStar = action => (
-  <VectorIco
-    middle
-    name="star"
-    size={20}
-    color={Colors.green30}
-    onPress={action}
-    style={{ marginRight: 8 }}
-  />
-);
-const Star = action => (
-  <VectorIco
-    middle
-    name="star-o"
-    size={20}
-    onPress={action}
-    color={Colors.green30}
-    style={{ marginRight: 8 }}
-  />
-);
 
 const styles = StyleSheet.create({
   image: {
@@ -108,84 +74,17 @@ class Latest extends Component {
   };
 
   renderItem = ({ item }) => {
-    const { removeFromFav, favorites } = this.props;
     const { activeTab } = this.state;
-    const isActiveTab = activeTab === item.symbol;
-    const statusColor = item.quote.USD.percent_change_24h > 0 ? Colors.green30 : Colors.red30;
-    const Progress = item.quote.USD.percent_change_24h > 0 ? upIcon : downIcon;
-    const infav = typeof favorites.find(e => e === item.symbol) !== 'undefined';
-    const Favicon = infav ? FavStar(removeFromFav(item)) : Star(this.showAddToFav(item));
-    let icon = icos[item.symbol.toLowerCase()];
-    if (typeof icon === 'undefined') {
-      icon = defaultIcon;
-    }
+    const { removeFromFav, favorites } = this.props;
     return (
-      <Animatable.View {...animationProps}>
-        <ListItem
-          activeBackgroundColor={Colors.dark60}
-          activeOpacity={0.3}
-          height={77.5}
-          onPress={this.toggleMore(item)}
-        >
-          <ListItem.Part left>
-            <Animatable.Image source={icon} style={styles.image} {...imageAnimationProps} />
-          </ListItem.Part>
-          <ListItem.Part middle column containerStyle={[styles.border, { paddingRight: 17 }]}>
-            <ListItem.Part containerStyle={{ marginBottom: 3 }}>
-              <Text dark10 text70 style={{ flex: 1, marginRight: 10 }} numberOfLines={1}>
-                {item.name}
-              </Text>
-              {Favicon}
-              <Text dark10 text70 style={{ marginTop: 2 }}>
-                {`${numeral(item.quote.USD.price).format('$0,0.00')}`}
-              </Text>
-            </ListItem.Part>
-            <ListItem.Part>
-              <Text
-                style={{ flex: 1, marginRight: 10 }}
-                text90
-                dark40
-                numberOfLines={1}
-              >{`Cap:${numeral(item.quote.USD.market_cap).format('$0.00a')} | supply:${numeral(
-                item.total_supply
-              ).format('$0.00a')} | vol:${numeral(item.quote.USD.volume_24h).format(
-                '$0.00a'
-              )}  `}</Text>
-              <Text text90 color={statusColor} numberOfLines={1}>
-                {Progress} {`${numeral(item.quote.USD.percent_change_24h).format('0%')} 24h`}
-              </Text>
-            </ListItem.Part>
-          </ListItem.Part>
-        </ListItem>
-        {isActiveTab && this.moreInfo(item)}
-      </Animatable.View>
-    );
-  };
-
-  moreInfo = cur => {
-    // FIXME: free API KEY don't have access to historical data
-    const loadingHistory = false;
-    const data = [50, 10, 40, 95, -4, -24, 85, 91, 35, 53, -53, 24, 50, -20, -80];
-    return (
-      <Animatable.View
-        duration={300}
-        transition="backgroundColor"
-        style={{ backgroundColor: 'rgba(245,252,255,1)', margin: 5 }}
-      >
-        {loadingHistory && <LoaderScreen color={Colors.blue30} message="Loading..." overlay />}
-        <Animatable.Text duration={300} easing="ease-out" animation="zoomIn">
-          {cur.name}
-        </Animatable.Text>
-        <AreaChart
-          style={{ height: 200 }}
-          data={data}
-          contentInset={{ top: 30, bottom: 30 }}
-          curve={shape.curveNatural}
-          svg={{ fill: '#8800cc' }}
-        >
-          <Grid />
-        </AreaChart>
-      </Animatable.View>
+      <MarketItem
+        item={item}
+        toggleMore={this.toggleMore}
+        activeTab={activeTab}
+        favorites={favorites}
+        removeFromFav={removeFromFav}
+        addToFav={this.showAddToFav}
+      />
     );
   };
 

@@ -1,4 +1,4 @@
-rootProject.name = 'mocare'
+rootProject.name = 'market'
 
 include ':react-native-svg'
 project(':react-native-svg').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-svg/android')
@@ -9,8 +9,6 @@ project(':react-native-blur').projectDir = new File(rootProject.projectDir, '../
 include ':react-native-ui-lib'
 	project(':react-native-ui-lib').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-ui-lib/lib/android')
 
-include ':react-native-fast-image'
-project(':react-native-fast-image').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-fast-image/android')
 include ':react-native-config'
 project(':react-native-config').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-config/android')
 include ':react-native-linear-gradient'
