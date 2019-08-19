@@ -14,7 +14,7 @@ matrix:
       node_js: 10
       env: LANE='react-native'
       script:
-        - npm install
+        - yarn install
 
     - language: android
       sudo: required
